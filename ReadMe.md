@@ -90,7 +90,7 @@ This tells Python how many steps to take to reach the next block.
 4. set.update(iterable) = unpacks the items of an iterable e.g. lists, tuples, and strings and adds individual item to the set.
 
 
-### Object-Oriented Programming (OOP)
+## Object-Oriented Programming (OOP)
 1. Class = a standardized blueprint or template that defines the structure and attributes of an object.
 2. Object = a concrete individual item built from a class template.
 3. Attribute = a variable or property associated with a specific object, holding a piece of its data.
@@ -101,6 +101,7 @@ This tells Python how many steps to take to reach the next block.
 ### Linked Lists
 A linked list is a linear data structure where elements are not stored in contiguous, numbered memory slots. Instead, each element is a self-contained object (called a **NODE**) that contains its own data and a pointer link (called /**next**/) that points directly to the next node in the chain.
 
+
 #### Key Concepts
 1. Node = a self-contained object that acts as a single link in a linked list, containing data and a reference to the next node
 2. Pointer = an attribute inside a node that stores the memory address of the /*next* node in the sequence.
@@ -109,14 +110,52 @@ A linked list is a linear data structure where elements are not stored in contig
 5. Broken Link (Memory Leak) = an error where a pointer is overwritten before its downstream connections are saved, causing these objects to be lost in memory.
 
 
-### Advanced Data Structure and Algorithm (DSA) with Python
+## Advanced Data Structure and Algorithm (DSA) with Python
 
 1. 
 
 
-### Generators and Yields
+## Generators and Yields
 In simple terms, a **/*generator*/** is a function with a pause button while a **/*yield*/** is that pause button. A generator in Python is a special type of function that produces a sequence of values over time, rather than returning them all at once.
 **Lazy Evaluation** is a performance strategy where values are computed only at the exact moment they're requested, rather than pre-computing them all at once.
 
-### Decorators
+
+## Decorators
 Decorators in Python, are tools that let you wrap a function inside another function. They allow you to inject extra code before and after your original function runs without modifying your original code.
+
+
+## Module and Import
+A package is just directory contains several modules, have this file named "__init__.py" in your director. This combines all the modules into a single package. You need to use this method to import any module from the package:
+
+    from my_pkg import my_module
+  
+This imports the whole module from that package but if you want to import a specific function from the module, use this:
+
+    from my_pkg.my_module import my_function
+
+
+## Packages and PyPI
+PyPI (short for Python Package Index) is a giant library for Python code (similar to the npm repository in JavaScript). You use pip (similar to npm in JS) to install a package. 
+* If you want to make HTTP requests, use /*requests*
+* If you want to work with data, use /*pandas*
+* If you want to build a web app, use /*flask* or /*django*
+* If you want to make API calls, use /*httpx* 
+
+### Key Commands to note:
+* To install a package, run /*pip install package_name*
+* To check the list of packages you have installed, run /*pip list*
+* To show a particular package and information, run /*pip show package_name*
+* To upgrade a package, run /*pip install --upgrade package_name*
+* To get all the installed packages and their files and save the into a file, run /*pip freeze > requirements.txt*
+* To install all the packages in the requirements.txt file,  run /*pip install -r requirements.txt*
+
+
+## Virtual Environments and $PATH
+Virtual Environments in Python allow you to create "isolated" toolboxes(environment) which have their own Python interpreter. The reason why we have virtual environment is because your project can need a particular version of a package while another project needs a different version the same package.
+
+### Key Concepts
+* venv = the Python module that allows you to create virtual environments
+* $PATH = an environment variable that tells your shell where to find executable program.
+* Activation = the process of making Python make use of your virtual environment's Python and not the system's Python.
+* Deactivation = leaving the virtual environment's Python and returning to the system's Python. 
+* Shebang = the first line of the script that tells the system which version of the interpreter to use.

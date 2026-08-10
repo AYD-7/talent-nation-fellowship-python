@@ -5,6 +5,7 @@ from datetime import datetime
 import keyword
 from collections import deque # for queuing
 from contextlib import suppress
+from my_billing_package import billing
 
 print(f"The current version of Python you are using is {sys.version}")  # version
 print(
@@ -1046,3 +1047,10 @@ with suppress(FileNotFoundError):
 
 
 # creating custom content management
+
+# 
+base_cost = billing.calculate_subtotal(2000, 8)
+final_amount = billing.apply_discount(base_cost, 0.15)
+receipt = billing.format_receipt("Joshua", final_amount)
+
+print(receipt)
