@@ -6,6 +6,7 @@ import keyword
 from collections import deque # for queuing
 from contextlib import suppress
 from my_billing_package import billing
+from typing import Optional # for making a type optional
 
 print(f"The current version of Python you are using is {sys.version}")  # version
 print(
@@ -1054,3 +1055,51 @@ final_amount = billing.apply_discount(base_cost, 0.15)
 receipt = billing.format_receipt("Joshua", final_amount)
 
 print(receipt)
+
+# static typing
+
+# dropping hints
+
+def count_alpha (content: str) -> int:
+    count = 0
+
+    # guard clause
+    if len(content) == 0:
+        return count
+
+    # checking for alphabets and counting 'em
+    for char in content:
+        if char.isalpha():
+            count += 1
+
+    return count
+
+print("The number of alpha counts:", count_alpha("25huoq90i"))
+
+# Exception Handling with try/except
+
+def teams_designator () -> dict:
+    # docstrings
+    """
+        This is a function that gets the number of contestants and creates the number of teams of two you can create with the contestants and return the team names. 
+    """
+    try:
+        no_of_contestants = int(input("Enter the number of contestants: "))
+    except ValueError:
+        return f"Invalid number!"
+
+    # guard clauses
+    if no_of_contestants % 6 != 0:
+        return f"There is at least one contestant who doesn't have a team. A team must have exactly six members"
+
+    # getting the number of teams and creating teams
+    no_of_teams = no_of_contestants // 6 # returning an int
+    teams = [f"Team {team + 1}" for team in range(no_of_teams)]
+
+    return {
+        "no_of_contestants": no_of_contestants,
+        "no_of_teams": no_of_teams,
+        "teams": teams
+    }
+
+print(teams_designator())

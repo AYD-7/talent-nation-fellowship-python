@@ -99,14 +99,14 @@ This tells Python how many steps to take to reach the next block.
 
 
 ### Linked Lists
-A linked list is a linear data structure where elements are not stored in contiguous, numbered memory slots. Instead, each element is a self-contained object (called a **NODE**) that contains its own data and a pointer link (called /**next**/) that points directly to the next node in the chain.
+A linked list is a linear data structure where elements are not stored in contiguous, numbered memory slots. Instead, each element is a self-contained object (called a **NODE**) that contains its own data and a pointer link (called **next**) that points directly to the next node in the chain.
 
 
 #### Key Concepts
 1. Node = a self-contained object that acts as a single link in a linked list, containing data and a reference to the next node
-2. Pointer = an attribute inside a node that stores the memory address of the /*next* node in the sequence.
+2. Pointer = an attribute inside a node that stores the memory address of the *next* node in the sequence.
 3. Head = a reference pointer that tracks the first node in a linked list. If the list is empty, the head is None.
-4. Traversal = the process of starting at the **head** node and following the /*next* pointers step by step to read or modify each item.
+4. Traversal = the process of starting at the **head** node and following the *next* pointers step by step to read or modify each item.
 5. Broken Link (Memory Leak) = an error where a pointer is overwritten before its downstream connections are saved, causing these objects to be lost in memory.
 
 
@@ -136,22 +136,22 @@ This imports the whole module from that package but if you want to import a spec
 
 ## Packages and PyPI
 PyPI (short for Python Package Index) is a giant library for Python code (similar to the npm repository in JavaScript). You use pip (similar to npm in JS) to install a package. 
-* If you want to make HTTP requests, use /*requests*
-* If you want to work with data, use /*pandas*
-* If you want to build a web app, use /*flask* or /*django*
-* If you want to make API calls, use /*httpx* 
+* If you want to make HTTP requests, use *requests*
+* If you want to work with data, use *pandas*
+* If you want to build a web app, use *flask* or *django*
+* If you want to make API calls, use *httpx* 
 
 ### Key Commands to note:
-* To install a package, run /*pip install package_name*
-* To check the list of packages you have installed, run /*pip list*
-* To show a particular package and information, run /*pip show package_name*
-* To upgrade a package, run /*pip install --upgrade package_name*
-* To get all the installed packages and their files and save the into a file, run /*pip freeze > requirements.txt*
-* To install all the packages in the requirements.txt file,  run /*pip install -r requirements.txt*
+* To install a package, run *pip install package_name*
+* To check the list of packages you have installed, run *pip list*
+* To show a particular package and information, run *pip show package_name*
+* To upgrade a package, run *pip install --upgrade package_name*
+* To get all the installed packages and their files and save the into a file, run *pip freeze > requirements.txt*
+* To install all the packages in the requirements.txt file,  run *pip install -r requirements.txt*
 
 
 ## Virtual Environments and $PATH
-Virtual Environments in Python allow you to create "isolated" toolboxes(environment) which have their own Python interpreter. The reason why we have virtual environment is because your project can need a particular version of a package while another project needs a different version the same package.
+Virtual Environments in Python allow you to create "isolated" toolboxes(environment) which have their own Python interpreter. The reason why we have virtual environment is because your project can need a particular version of Python while another project needs a different version.
 
 ### Key Concepts
 * venv = the Python module that allows you to create virtual environments
@@ -159,3 +159,29 @@ Virtual Environments in Python allow you to create "isolated" toolboxes(environm
 * Activation = the process of making Python make use of your virtual environment's Python and not the system's Python.
 * Deactivation = leaving the virtual environment's Python and returning to the system's Python. 
 * Shebang = the first line of the script that tells the system which version of the interpreter to use.
+
+To create a virtual environment in a project, go to the project's root directory and run *python -m venv myenv*
+This creates a folder named **"myenv"** that gets a copy of the Python interpreter, a copy of pip and creates a clean isolated environment. 
+
+You need to activate the venv, run this command *myenv/Scripts/activate*
+
+
+## Static Typing
+If you want to enforce typing, you can install **mypy** using the command *pip install mypy*. You can use the command *mypy file_name* to run and ensure you followed typing.
+
+## Documentation and Docstrings
+A docstring is a string literal inside triple quotes (""") that is placed as the first line of code of a function, module or class explaining its purpose. If you write a string at the very start of these blocks, Python automatically captures it and stores it in the object's *__doc__* attribute. 
+
+You can use the *help()* to view a function's docstring. 
+
+## Threading and GIL
+Concurrency - managing multiple tasks at the same time.
+
+### Key Concepts
+1. Thread = an independent line of code execution running within a program.
+2. GIL (Global Interpreter Lock) = a rule in standard Python that restricts execution so only one thread can run Python code at any single microsecond.
+3. I/O bound Task = a task that spends most of its execution time waiting for external connection or hardware
+4. CPU-bound Task = a task that spends most of its execution time performing mathematical computations on the computer's processor.
+5. Race Condition = a critical bug that occurs when two threads attempt to modify the same variable at the exact same time, causing lost updates.
+6. Lock = a synchronization tool used to ensure only one thread can access a shared resource at a time.
+7. Daemon Thread = a background thread that is automatically terminated by Python the moment the main program exits.
