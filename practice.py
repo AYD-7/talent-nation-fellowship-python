@@ -7,6 +7,9 @@ from collections import deque # for queuing
 from contextlib import suppress
 from my_billing_package import billing
 from typing import Optional # for making a type optional
+import threading
+import multiprocessing
+import time
 
 print(f"The current version of Python you are using is {sys.version}")  # version
 print(
@@ -1103,3 +1106,26 @@ def teams_designator () -> dict:
     }
 
 print(teams_designator())
+
+# threading 
+def save_task (task):
+    print(f"[{task} saving...] Wait for a while")
+    time.sleep(5)
+    print(f"[{task} saved] You can move on to other things")
+
+# creating threads
+thread1 = threading.Thread(target = save_task, args = ("Build client-side application",))
+thread2 = threading.Thread(target = save_task, args = ("Create server and set up database",))
+thread3 = threading.Thread(target = save_task, args = ("Connect server-side logic to client-side application",))
+
+# starting the thread (i.e. executing the code concurrently)
+thread1.start()
+thread2.start()
+thread3.start()
+
+# joining(chaining) the threads together
+thread1.join()
+thread2.join()
+thread3.join()
+
+

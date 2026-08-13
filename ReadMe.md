@@ -185,3 +185,10 @@ Concurrency - managing multiple tasks at the same time.
 5. Race Condition = a critical bug that occurs when two threads attempt to modify the same variable at the exact same time, causing lost updates.
 6. Lock = a synchronization tool used to ensure only one thread can access a shared resource at a time.
 7. Daemon Thread = a background thread that is automatically terminated by Python the moment the main program exits.
+
+
+## Multiprocessing and Asyncio
+Threads help with concurrency with I/O-bound tasks but GIL prevents parallel execution on multiple processor cores which are CPU-bound tasks. That's why we have other options that basically help with running concurrency for CPU-bound tasks. They are **Multiprocessing** and **Asyncio**.
+
+1. Multiprocessing = bypasses the GIL totally. Each process has its own isolated Python interpreter and its own independent GIL, allowing true parallel executions across multiple processor cores. preferably  
+2. Asyncio = this uses a single thread and an event loop to handle thousands concurrent tasks. Instead of the operating system switching between threads, tasks voluntarily pause when they are waiting. 
