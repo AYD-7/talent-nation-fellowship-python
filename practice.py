@@ -1,15 +1,20 @@
 # imports
-import sys
-import random
-from datetime import datetime
-import keyword
-from collections import deque # for queuing
-from contextlib import suppress
-from my_billing_package import billing
-from typing import Optional # for making a type optional
-import threading
-import multiprocessing
-import time
+import sys  # I used it to check the version of Python I am using
+import random  # works for generating random numbers
+from datetime import datetime  # works with date and time, formatting and whatnot
+import keyword  # used for checking if the content of a string is a keyword
+from collections import deque  # for queuing
+from contextlib import (
+    suppress,
+)  # stops the program from raising an Error mostly while using a context manager
+from my_billing_package import billing  # a user-defined/custom module
+from typing import Optional  # for making a type optional
+import threading  # for I/O-bound tasks, creates threads (concurrency)
+import multiprocessing  # for CPU-bound tasks, allows multiple tasks to run concurrently
+import time  # # I used to simulate a delay in an operation. Used alongside threading threading and multiprocessing
+import numpy as np  # for multi-dimensional arrays and fast numerical computations
+import pandas as pd  # for working with tabular data, structured data manipulation and analysis
+from sklearn.linear_model import LogisticRegression  # for machine learning
 
 print(f"The current version of Python you are using is {sys.version}")  # version
 print(
@@ -516,12 +521,12 @@ class PremiumStudent(Student):
     ):
         # super() method that helps to execute a parent class attribute when the child class is overriding it
         super().__init__(
-            first_name = first_name,
-            last_name = last_name,
-            matric_no = matric_no,
-            department = department,
-            graduation_year = graduation_year,
-            middle_name = middle_name
+            first_name=first_name,
+            last_name=last_name,
+            matric_no=matric_no,
+            department=department,
+            graduation_year=graduation_year,
+            middle_name=middle_name,
         )
         self.tuition_fee = float(tuition_fee)
 
@@ -535,7 +540,6 @@ class PremiumStudent(Student):
         return f"{parent_repr[:-1]}, tuition_fee = {self.tuition_fee})"
 
 
-
 first_premium_student = PremiumStudent(
     first_name="Christianah",
     last_name="Adema",
@@ -547,28 +551,33 @@ first_premium_student = PremiumStudent(
 
 print(repr(first_premium_student))
 
+
 # stacking
 class Cupboard:
     def __init__(self):
         self._cup = []
 
     # representation
-    def __repr__ (self):
+    def __repr__(self):
         return f"Cupboard()"
 
     # informational
-    def __str__ (self):
-        content = f"\n{'\n'.join(self._cup)}" if len(self._cup) >= 1 else "Cupboard is currently empty" 
+    def __str__(self):
+        content = (
+            f"\n{'\n'.join(self._cup)}"
+            if len(self._cup) >= 1
+            else "Cupboard is currently empty"
+        )
         return f"The cupboard's content: {content}"
 
     # add a new item (last in)
-    def add_cup (self, cup):
+    def add_cup(self, cup):
         self._cup.append(cup)
 
     # actual stacking logic
     # last in first out
     def remove_cup(self):
-        # checking if cup is empty 
+        # checking if cup is empty
         if self.is_empty():
             print("Action Blocked: Cup is currently empty!")
             return None
@@ -591,13 +600,14 @@ first_cup.add_cup("Stainless Cup")
 first_cup.add_cup("Cardboard Cup")
 print(first_cup)
 
+
 # queuing (with inheritance)
 class CupQueue(Cupboard):
 
     # queuing actual logic
     def remove_cup(self):
         if self.is_empty():
-            print('Action Blocked: Cup container is already empty!')
+            print("Action Blocked: Cup container is already empty!")
             return None
         else:
             self._cup.pop(0)
@@ -619,22 +629,23 @@ queue = deque()
 queue.append("Task 1")
 queue.append("Task 2")
 queue.append("Task 3")
-queue.appendleft("Task 0") # add to the front of the queue
+queue.appendleft("Task 0")  # add to the front of the queue
 print(queue)
 
-queue.pop() # remove from behind: last in first out
-queue.popleft() # remove from the front: first in 
+queue.pop()  # remove from behind: last in first out
+queue.popleft()  # remove from the front: first in
 print(queue)
 
 # step-by-step implementation of a linked list
+
 
 # step 1: building the class
 class FellowOnMyTable:
     def __init__(self, name):
         self.fellow_name = name
-        self.next = None # defaults to empty
+        self.next = None  # defaults to empty
 
-    def __str__ (self):
+    def __str__(self):
         return f"The fellow's name is {self.fellow_name}"
 
 
@@ -651,8 +662,11 @@ first_fellow.next = second_fellow
 second_fellow.next = third_fellow
 third_fellow.next = fourth_fellow
 
-print(first_fellow.next) # getting the next node (__str__ method) that follows the current fellow
-print(second_fellow.next.fellow_name) # getting the exact name of the next fellow 
+print(
+    first_fellow.next
+)  # getting the next node (__str__ method) that follows the current fellow
+print(second_fellow.next.fellow_name)  # getting the exact name of the next fellow
+
 
 # step 3: building the linked list manager class
 class FellowChain:
@@ -680,69 +694,81 @@ print(first_order.right)
 def insert(node, price):
     # base case: if we reach an empty spot, stamp out a new node here
     if node is None:
-        return 
+        return
 
 
 # BST (from claude.ai)
-class Node:                                  # A "Node" is one box in the tree
-    def __init__(self, value):                # This runs automatically when we create a new Node
-        self.value = value                    # Store the number/data this node holds
-        self.left = None                      # Pointer to left child — starts empty (no child yet)
-        self.right = None                     # Pointer to right child — starts empty (no child yet)
+class Node:  # A "Node" is one box in the tree
+    def __init__(self, value):  # This runs automatically when we create a new Node
+        self.value = value  # Store the number/data this node holds
+        self.left = None  # Pointer to left child — starts empty (no child yet)
+        self.right = None  # Pointer to right child — starts empty (no child yet)
 
 
-class BST:                                    # The "BST" class manages the whole tree
-    def __init__(self):                       # Runs automatically when we create a new tree
-        self.root = None                      # The tree starts empty — no root node yet
+class BST:  # The "BST" class manages the whole tree
+    def __init__(self):  # Runs automatically when we create a new tree
+        self.root = None  # The tree starts empty — no root node yet
 
-    def insert(self, value):                  # Public method to add a new value to the tree
-        if self.root is None:                 # Check: is the tree completely empty?
-            self.root = Node(value)            # If yes, this new value becomes the root
-            return                             # Done — nothing more to do
-        current = self.root                    # Otherwise, start looking from the root
-        while True:                            # Keep looping until we place the node
-            if value < current.value:           # Is our new value smaller than the current node?
-                if current.left is None:         # If there's no left child yet...
-                    current.left = Node(value)    # ...attach the new node here
-                    return                        # Done — stop the loop
-                current = current.left            # Otherwise, step down to the left child and repeat
-            else:                                 # Value is bigger (or equal) to current node
-                if current.right is None:          # If there's no right child yet...
-                    current.right = Node(value)     # ...attach the new node here
-                    return                          # Done — stop the loop
-                current = current.right             # Otherwise, step down to the right child and repeat
+    def insert(self, value):  # Public method to add a new value to the tree
+        if self.root is None:  # Check: is the tree completely empty?
+            self.root = Node(value)  # If yes, this new value becomes the root
+            return  # Done — nothing more to do
+        current = self.root  # Otherwise, start looking from the root
+        while True:  # Keep looping until we place the node
+            if value < current.value:  # Is our new value smaller than the current node?
+                if current.left is None:  # If there's no left child yet...
+                    current.left = Node(value)  # ...attach the new node here
+                    return  # Done — stop the loop
+                current = (
+                    current.left
+                )  # Otherwise, step down to the left child and repeat
+            else:  # Value is bigger (or equal) to current node
+                if current.right is None:  # If there's no right child yet...
+                    current.right = Node(value)  # ...attach the new node here
+                    return  # Done — stop the loop
+                current = (
+                    current.right
+                )  # Otherwise, step down to the right child and repeat
 
-    def contains(self, value):                 # Public method to check if a value exists in the tree
-        current = self.root                     # Start looking from the root
-        while current is not None:              # Keep going as long as we haven't fallen off the tree
-            if value == current.value:           # Does the current node match what we want?
-                return True                       # Yes! Found it
-            elif value < current.value:           # Is our target smaller than the current node?
-                current = current.left             # Move to the left child
-            else:                                 # Otherwise, target must be bigger
-                current = current.right            # Move to the right child
-        return False                            # Loop ended without finding it — value isn't in the tree
+    def contains(self, value):  # Public method to check if a value exists in the tree
+        current = self.root  # Start looking from the root
+        while (
+            current is not None
+        ):  # Keep going as long as we haven't fallen off the tree
+            if value == current.value:  # Does the current node match what we want?
+                return True  # Yes! Found it
+            elif value < current.value:  # Is our target smaller than the current node?
+                current = current.left  # Move to the left child
+            else:  # Otherwise, target must be bigger
+                current = current.right  # Move to the right child
+        return False  # Loop ended without finding it — value isn't in the tree
 
-    def inorder(self):                          # Public method to get all values sorted, smallest to largest
-        result = []                              # Empty list to collect values as we find them
-        self._inorder(self.root, result)         # Start the recursive walk from the root
-        return result                            # Give back the completed sorted list
+    def inorder(self):  # Public method to get all values sorted, smallest to largest
+        result = []  # Empty list to collect values as we find them
+        self._inorder(self.root, result)  # Start the recursive walk from the root
+        return result  # Give back the completed sorted list
 
-    def _inorder(self, node, result):            # Helper method (the underscore means "internal use")
-        if node:                                  # Only do something if this node actually exists
-            self._inorder(node.left, result)       # First, visit everything to the LEFT (smaller values)
-            result.append(node.value)              # Then, record THIS node's value
-            self._inorder(node.right, result)      # Finally, visit everything to the RIGHT (bigger values)
+    def _inorder(
+        self, node, result
+    ):  # Helper method (the underscore means "internal use")
+        if node:  # Only do something if this node actually exists
+            self._inorder(
+                node.left, result
+            )  # First, visit everything to the LEFT (smaller values)
+            result.append(node.value)  # Then, record THIS node's value
+            self._inorder(
+                node.right, result
+            )  # Finally, visit everything to the RIGHT (bigger values)
 
 
 # ---- Example usage ----
-tree = BST()                                   # Create a new, empty tree
-for num in [8, 3, 10, 1, 6]:                    # Loop through a list of numbers to insert
-    tree.insert(num)                             # Insert each one into the tree, one at a time
+tree = BST()  # Create a new, empty tree
+for num in [8, 3, 10, 1, 6]:  # Loop through a list of numbers to insert
+    tree.insert(num)  # Insert each one into the tree, one at a time
 
-print(tree.contains(6))                         # Search for 6 → prints True (it's in the tree)
-print(tree.contains(5))                         # Search for 5 → prints False (not in the tree)
-print(tree.inorder())                           # Print all values sorted → [1, 3, 6, 8, 10]
+print(tree.contains(6))  # Search for 6 → prints True (it's in the tree)
+print(tree.contains(5))  # Search for 5 → prints False (not in the tree)
+print(tree.inorder())  # Print all values sorted → [1, 3, 6, 8, 10]
 
 
 class Car:
@@ -754,11 +780,13 @@ class Car:
     def details(self):
         print(f"This car is a {self.brand} {self.model} {self.year}")
 
+
 c1 = Car("Mercedes-Benz", "G-Wagon", 2026)
 c1.details()
 
 create_password = ""
 confirm_password = ""
+
 
 def password_creator():
     global create_password
@@ -769,14 +797,17 @@ def password_creator():
 
     if create_password == confirm_password:
         print("Password created successfully!")
-    else: 
+    else:
         print("Password do not match! Try again")
-        password_creator() # recursion
+        password_creator()  # recursion
+
 
 password_creator()
 
 password_attempts = 1
-def password_checker (created_password):
+
+
+def password_checker(created_password):
     password = input("Enter your password: ")
     global password_attempts
 
@@ -784,7 +815,7 @@ def password_checker (created_password):
         # a nested condition
         if password_attempts >= 5:
             print("You have tried five times, try again later!")
-        else: 
+        else:
             print("Access denied! Try again.")
             password_attempts += 1
             password_checker(create_password)
@@ -792,39 +823,46 @@ def password_checker (created_password):
     else:
         print("Access granted!")
 
+
 password_checker(create_password)
 
 # iterators and iterables
-proteins = ["Ponmo", "Shaki", "Titus", "Pork",] # iterable
-proteins_iterator = iter(proteins) # iterator
+proteins = [
+    "Ponmo",
+    "Shaki",
+    "Titus",
+    "Pork",
+]  # iterable
+proteins_iterator = iter(proteins)  # iterator
 
 print(type(proteins))
 print(type(proteins_iterator))
 
-print(next(proteins_iterator)) 
-print(next(proteins_iterator)) 
-print(next(proteins_iterator)) 
-print(next(proteins_iterator)) 
-# print(next(proteins_iterator)) 
+print(next(proteins_iterator))
+print(next(proteins_iterator))
+print(next(proteins_iterator))
+print(next(proteins_iterator))
+# print(next(proteins_iterator))
+
 
 # creating custom iterators
 class CustomIterator:
     # dunder method to run when instantiating the object
-    def __init__ (self, limit):
+    def __init__(self, limit):
         self.limit = limit
         self.current = 0
 
     # turning the object to an iterator
-    def __iter__ (self):
+    def __iter__(self):
         return self
 
     # logic to always move to the next item in the iterable and stopping when it gets to the end of the iterable
-    def __next__ (self):
-        # checking if it hasn't gotten to 
+    def __next__(self):
+        # checking if it hasn't gotten to
         if self.current < self.limit:
-            result = self.current # saving the current item in a temporary variable
-            self.current += 1 # moving to the next item in the iterable
-            return result # returning the current item
+            result = self.current  # saving the current item in a temporary variable
+            self.current += 1  # moving to the next item in the iterable
+            return result  # returning the current item
         # stopping the iteration when it gets to the end of the iterable
         else:
             raise StopIteration
@@ -845,20 +883,26 @@ for i in CustomIterator(len(favourite_movie_genre)):
 for i in CustomIterator(len(afrobeats_artistes)):
     print(afrobeats_artistes[i])
 
+
 # generators (uses yield instead of return) and yields
 def name_generator():
     yield "Ayodeji"
-    yield 'Aronimo'
+    yield "Aronimo"
 
-print("Memory Address of a generator:", name_generator()) # this only returns the memory address of the function
+
+print(
+    "Memory Address of a generator:", name_generator()
+)  # this only returns the memory address of the function
 gen = name_generator()
-print("Next item in the function:", next(gen)) # returns the next yield
-print("Next item in the function:", next(gen)) # returns the next yield
+print("Next item in the function:", next(gen))  # returns the next yield
+print("Next item in the function:", next(gen))  # returns the next yield
+
 
 def countdown(n):
     while n > 0:
         yield n
         n -= 1
+
 
 cd = countdown(5)
 print(next(cd))
@@ -874,15 +918,19 @@ def generator_size(n):
         yield n
         count += 1
 
+
 print(sys.getsizeof(generator_size(1000000)))
+
 
 def get_orders_generator(n):
     for i in range(n):
         yield f"Order #{i}"
 
+
 # Instantly returns a generator object using almost zero memory
 massive_gen = get_orders_generator(1000000)
 print(sys.getsizeof(massive_gen))
+
 
 def get_orders_list(n):
     orders = []
@@ -890,9 +938,11 @@ def get_orders_list(n):
         orders.append(f"Order #{i}")
     return orders
 
+
 # Generates 1,000,000 items in memory all at once
 massive_list = get_orders_list(1000000)
 print(f"Memory size: {sys.getsizeof(massive_list)} bytes")
+
 
 # yield from (for connecting sub-generators to a generator)
 # first sub-generator
@@ -901,17 +951,20 @@ def morning_shift():
     yield "Ayobami"
     yield "Tolulope"
 
+
 # second sub-generator
 def afternoon_shift():
     yield "Christianah"
     yield "Heritage"
     yield "Elizabeth"
 
+
 # third sub-generator
-def evening_shift ():
+def evening_shift():
     yield "Abiodun"
     yield "Ayodeji"
     yield "Elohor"
+
 
 # consolidating them all in a single generator
 def rooster():
@@ -919,32 +972,44 @@ def rooster():
     yield from afternoon_shift()
     yield from evening_shift()
 
+
 for on_duty in rooster():
     print(on_duty)
 
 
 # sub-generator
-def payroll ():
+def payroll():
     yield {"name": "Murewa", "role": "Software Engineering Intern", "pay": 350000}
     yield {"name": "Ayobami", "role": "System Engineer", "pay": 2300000}
     yield {"name": "Tolulope", "role": "AI/ML Engineer", "pay": 2350000}
     yield {"name": "Christianah", "role": "Full-stack Developer", "pay": 1910000}
     yield {"name": "Heritage", "role": "Product Designer", "pay": 1050000}
     yield {"name": "Elizabeth", "role": "Cybersecurity Expert", "pay": 2250000}
-    yield {"name": "Abiodun", "role": "Cloud Computing and System Engineer", "pay": 3200000}
+    yield {
+        "name": "Abiodun",
+        "role": "Cloud Computing and System Engineer",
+        "pay": 3200000,
+    }
     yield {"name": "Ayodeji", "role": "AI Agent and System Engineer", "pay": 3500000}
-    yield {"name": "Elohor", "role": "Brand Strategist and Full-stack Developer", "pay": 2500000}
+    yield {
+        "name": "Elohor",
+        "role": "Brand Strategist and Full-stack Developer",
+        "pay": 2500000,
+    }
+
 
 # sub-generator
-def calculate_salary (stream):
+def calculate_salary(stream):
     for employee in stream:
-        employee['salary'] = employee['pay'] - (employee['pay'] * 0.05)
+        employee["salary"] = employee["pay"] - (employee["pay"] * 0.05)
         yield employee
 
+
 # sub-generator
-def receipt_formatter (stream):
+def receipt_formatter(stream):
     for employee in stream:
         yield f"Employee: {employee['name'].capitalize()} \nRole: {employee['role']} \nSalary: ₦{employee['salary']:.2f}\n"
+
 
 # chaining the generators
 payroll_list = payroll()
@@ -955,40 +1020,50 @@ generate_receipt = receipt_formatter(salary_calculation)
 for receipt in generate_receipt:
     print(receipt)
 
+
 # functions can be assigned to variables
 def greeting(name):
     return f"Hello {name.title()}!"
+
 
 say_hello = greeting
 
 print(say_hello("Alice"))
 
+
 # functions can be passed as an argument
 def say_hello(name):
     return f"Hello, {name}!!!"
 
+
 def say_goodbye(name):
     return f"Goodbye, {name}!!!"
+
 
 def shout(speaker, name):
     return speaker(name).upper()
 
-print(shout(say_hello, "Bob"))   # Output: HELLO, BOB!
-print(shout(say_goodbye, "Bob")) # Output: GOODBYE, BOB!
+
+print(shout(say_hello, "Bob"))  # Output: HELLO, BOB!
+print(shout(say_goodbye, "Bob"))  # Output: GOODBYE, BOB!
+
 
 # functions can be returned from a functions
 def make_adder(n):
     def adder(x):
         return x + n
+
     return adder
 
+
 add_5 = make_adder(5)
-print(add_5(3))   # Output: 8
+print(add_5(3))  # Output: 8
+
 
 # building a decorator
 def decorator_function(func):
     # the function wrapper
-    def wrapper ():
+    def wrapper():
         print("Hi, this is happening right BEFORE the function runs!")
         # executing the first-class function
         func()
@@ -998,21 +1073,24 @@ def decorator_function(func):
     wrapper()
 
 
-def run_func ():
+def run_func():
     print("Function was executed!")
+
 
 decorator_function(run_func)
 
+
 # using the @syntax and also using a func that accepts an argument
-def function_decorator (func):
+def function_decorator(func):
     # passing positional arguments and/or keyword arguments
-    def wrapper (*args, **kwargs):
+    def wrapper(*args, **kwargs):
         print("Na wetin dey sup before the function run ooo!!!")
         result = func(*args, **kwargs)
         print("Na wetin wan sup after the function run 000!!!")
         return result
 
     return wrapper
+
 
 # adding the decorator
 @function_decorator
@@ -1022,11 +1100,12 @@ def name_separator(name):
 
     return name
 
+
 print(name_separator("Peters"))
 
 # content management
 # writing a file with content management
-with open("content.txt", 'w') as file:
+with open("content.txt", "w") as file:
     file.write("This was written with the content management!")
     print("Content written successfully!")
 
@@ -1037,7 +1116,7 @@ with open("content.txt", "r") as file:
     print(content)
 
 # working with multiple files (content manager)
-with open("input.txt", 'r') as in_file, open("output.txt", 'w') as out_file:
+with open("input.txt", "r") as in_file, open("output.txt", "w") as out_file:
     content = in_file.read()
     out_file.write(content.upper())
     print("Both files have been closed successfully!")
@@ -1052,7 +1131,7 @@ with suppress(FileNotFoundError):
 
 # creating custom content management
 
-# 
+#
 base_cost = billing.calculate_subtotal(2000, 8)
 final_amount = billing.apply_discount(base_cost, 0.15)
 receipt = billing.format_receipt("Joshua", final_amount)
@@ -1063,7 +1142,8 @@ print(receipt)
 
 # dropping hints
 
-def count_alpha (content: str) -> int:
+
+def count_alpha(content: str) -> int:
     count = 0
 
     # guard clause
@@ -1077,14 +1157,16 @@ def count_alpha (content: str) -> int:
 
     return count
 
+
 print("The number of alpha counts:", count_alpha("25huoq90i"))
 
 # Exception Handling with try/except
 
-def teams_designator () -> dict:
+
+def teams_designator() -> dict:
     # docstrings
     """
-        This is a function that gets the number of contestants and creates the number of teams of two you can create with the contestants and return the team names. 
+    This is a function that gets the number of contestants and creates the number of teams of two you can create with the contestants and return the team names.
     """
     try:
         no_of_contestants = int(input("Enter the number of contestants: "))
@@ -1096,27 +1178,34 @@ def teams_designator () -> dict:
         return f"There is at least one contestant who doesn't have a team. A team must have exactly six members"
 
     # getting the number of teams and creating teams
-    no_of_teams = no_of_contestants // 6 # returning an int
+    no_of_teams = no_of_contestants // 6  # returning an int
     teams = [f"Team {team + 1}" for team in range(no_of_teams)]
 
     return {
         "no_of_contestants": no_of_contestants,
         "no_of_teams": no_of_teams,
-        "teams": teams
+        "teams": teams,
     }
+
 
 print(teams_designator())
 
-# threading 
-def save_task (task):
+
+# threading
+def save_task(task):
     print(f"[{task} saving...] Wait for a while")
     time.sleep(5)
     print(f"[{task} saved] You can move on to other things")
 
+
 # creating threads
-thread1 = threading.Thread(target = save_task, args = ("Build client-side application",))
-thread2 = threading.Thread(target = save_task, args = ("Create server and set up database",))
-thread3 = threading.Thread(target = save_task, args = ("Connect server-side logic to client-side application",))
+thread1 = threading.Thread(target=save_task, args=("Build client-side application",))
+thread2 = threading.Thread(
+    target=save_task, args=("Create server and set up database",)
+)
+thread3 = threading.Thread(
+    target=save_task, args=("Connect server-side logic to client-side application",)
+)
 
 # starting the thread (i.e. executing the code concurrently)
 thread1.start()
@@ -1129,3 +1218,28 @@ thread2.join()
 thread3.join()
 
 
+# using NumPy
+prices = np.array([345, 679, 102, 225, 1383, 903, 543, 760])
+discounts = (
+    prices * 0.8
+)  # this implicitly multiplies every item in the array with 0.8 and return the result
+print(discounts)
+
+# using Pandas
+df = pd.read_csv("./assets/datasets/MOCK_DATA.csv")
+Mock_Data = df.head()
+print(Mock_Data)
+
+
+# using scikit-learn (sklearn)
+model = LogisticRegression() # initializing the model
+# model.fit(X_train, y_train) # training the model
+# prediction = model.predict(X_test)
+
+# print(prediction)
+
+print(id(Mock_Data)) # introspection, checking for it's unique identifier
+
+# right-angle triangle
+for i in range(6):
+    print("*" * i)
