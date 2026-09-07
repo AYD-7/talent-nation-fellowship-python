@@ -213,3 +213,119 @@ Every object in Python has three important characteristics:
 1. Value = the data it contains. E.g., "Adeolu", 42, True.
 2. Type = the kind of object it is. E.g., str, int, list. 
 3. Identity = a unique identifier that distinguishes it from other objects.
+
+
+## Deep Dive Into Artificial Intelligence
+From this lesson I understand that there's a lot of depth to the word **INTELLIGENCE** when we say it or have a mental picture in our head. It actually has a lot of core abilities linked to it, when we say something or someone is intelligent: they/it has to be able to learn from past experiences, use these experiences and knowledge to process new or current situations and even learn again when they encounter something new from the current situation. Know which experience to use for which situation. 
+
+While computers are deterministic in nature, you can make computers learn from experience, treat each situation different based on pattern recognition rather than always writing a program or logic to help it handle these cases. This is called **ARTIFICIAL INTELLIGENCE**.
+
+The core abilities needed for intelligence can be split into:
+
+### LEARNING
+Learning simply means improving performance based on experience. You pass through a dusty dirt road where your white sneakers got all dirty, next time you wouldn't want to pass there. This is learning, nobody had to tell you not to pass there next time, you don't have to be told. This experience even changes your future behaviour.
+
+In the same way, intelligent systems can learn from examples. Imagine you mark some emails as spam, over time your email app start to know which words, senders and/or patterns are likely to be spam. You don't need to write a rule for each possible spam, the app learns on its own from the millions of examples that come from you and millions of other users.
+
+Learning is powerful because the world changes. Fraudsters change methods, traffic patterns change, music taste changes. A system that learns doesn't need to have its code rewritten, it just learns the new pattern.
+
+**AI learns from DATA**.
+
+### REASONING
+Reasoning is the ability  to draw conclusion from available information. I made a scenario earlier on with white sneakers, and dirt road. You already have the experience that the dirt road dirties white sneakers. When next you are on your white sneakers, you would need to decide that you need to take another more suitable route to avoid getting your sneakers dirty. That's reasoning.
+
+A machine that can reason does something similar. It takes facts or data, it takes logical steps and arrive at a conclusion. Reasoning may be simple or complex. It may involve rules, probabilities, or chains of logic. But the core idea is that it goes beyond the raw facts to form a new judgement.
+
+### PATTERN RECOGNITION
+Pattern recognition is the ability to notice regularities in data. Still using the similar context as above, you may not use that road again but you may come across another road that's a dirt road. You will notice the similarity or regularity between this new road and the former one, similarities like; brown sand, dust filling the air, lack of asphalt or tarmac e.t.c. You can then decide to avoid this road as well so as not to get your sneakers dirty. This is pattern recognition in real life.
+
+In computing, pattern recognition is everywhere. A face unlock feature recognizes the pattern of your face. A voice assistant recognizes the pattern of your speech. A fraud detection system recognizes the pattern of your typical spending.
+
+Pattern recognition is essential because the world is not random. There are regularities, repetitions, and relationships. Intelligent systems use these regularities to make predictions and decisions
+
+### DECISION-MAKING
+Decision-making is the ability to choose an action among alternatives. Using the same context, while you now know better to avoid any dusty dirt road, and to take another road. You will always have different roads to likely use, you cannot use more than one. You will most likely use the one that gets you to your destination the fastest or most conveniently or both. This is decision-making at play. An AI system can make similar decisions by weighing different factors.
+
+For example, a recommendation system must decide which video to show next from thousands or millions of options. A credit card fraud system must decide whether to approve, decline, or flag a transaction. A chatbot must decide whether to answer a question, ask for clarification, or transfer to a human.
+
+Decision-making often involves trade-offs. A system cannot show every possible video. It must choose the one most likely to be relevant. It cannot flag every transaction as fraud, or customers will be frustrated. It must balance risk and convenience. Intelligent systems make these choices by evaluating evidence and following learned strategies.
+
+
+## Strengths of Deterministic Systems
+1. Consistency = the system applies the same rules the same way every time.
+2. Predictability = given the inputs and rules, the output can be predicted and tested.
+3. Transparency = the rules can be documented and inspected. Anyone can review the logic.
+4. Auditability = the history of the state changes can be traced and verified.
+5. Reliability = because the behaviour is stable, the system can be trusted for critical tasks.
+6. Ease of maintenance: When the rules are clear, fixing bugs or updating rules is often straightforward. You find the relevant rule and change it.
+7. Efficiency: For well-defined tasks, deterministic systems can be very fast and inexpensive to run.
+
+
+## Structured vs Unstructured Data
+Structured data is organized into a strict, predictable format. Unstructured data is not.
+
+
+## The Machine Learning (ML) Equation
+Earlier said, ML is letting a computer learn from the pattern in data. There something called **features**(inputs) and **labels**(outputs). Where:
+* Feature is the data you are using to train the model. The information the computer uses to make prediction
+* Label is the expected outcome or known output.
+
+Even though intelligent systems can learn from the pattern in data, human intervention is still much present in **Machine Learning**. Machine learning does not mean the human disappears. The human shifts to new tasks. The role of humans in the ML paradigm include:
+* **Collecting data** from real systems.
+* **Cleaning data** to remove errors.
+* **Labeling data** with correct outputs.
+* **Choosing features** that are relevant.
+* **Selecting a learning algorithm** that is appropriate for the task.
+* **Evaluating the model** to ensure it performs well.
+* **Deploying and monitoring** the model over time.
+
+### How training produces the model
+During training, a learning algorithm is fed the dataset with features and labels. The algorithm adjusts its internal parameters to reduce the difference between its predictions and the true labels.
+
+The model is not a program in the usual sense. You cannot open a model and read clear rules like you would in a traditional programming. Instead, the model contains numeric weights, thresholds, or learned structures. It behaves like a black box in many cases. You can see the inputs and outputs, but the internal reasoning may be difficult to interpret.
+
+### Inputs → Model → Outputs
+There are two phases, training and inference phases. The training phase is when you actually train the model, the inference phase is when the model is being used to make predictions. In simple words, **training** is when the model is built while **inference** is when the model is used.
+
+The model does not store the training data, it only stores the learned parameters or patterns. 
+
+**Training Phase**
+Inputs (features + labels)
+        ↓
+Learning Algorithm
+        ↓
+Trained Model (Output)
+
+**Training Phase**
+New Inputs (features only)
+        ↓
+Trained Model
+        ↓
+Prediction (Output)
+
+A very good thing I learned again was that there are different types of learning:
+1. Supervised Learning = you train the ML model using labelled data. For example, if you want to train a model to recognise a diseased plant under supervised learning, you give it multiple examples labelling diseased plants as diseased and healthy plants as healthy. 
+2. Unsupervised Learning = you give the model unlabelled grouped data, it starts to pick patterns by itself and recognise the similarities between the grouped data.
+3. Reinforcement Learning = you put the model in an environment where it learns to make decisions from trial and error. You also introduce a *"carrot and stick"* approach where you give rewards when it makes the right decision and punishments when it makes the wrong one.
+
+
+## Lifecycle
+Training(building) - Inference(using) lifecycle. 
+
+### Training
+This is the process of creating the model
+
+**During training, you need:**
+1. A dataset with features and labels (supervised learning)
+2. A learning algorithm
+3. Computing power, such as a laptop, server or cloud processor.
+
+Training can take seconds, minutes, hours or days depending on the size of the data or the complexity of the model.
+
+During training, you also need to evaluate your model. You will need to set aside some labeled data that the model did not train on.You test the model on that held-out data you to see how well it performs. This is called **validation** or **evaluation**. It gives you an evaluation of how well your data will do on new, unseen data.
+
+
+### Inference
+Inference is the process of using the trained model to make predictions.
+
+During inference, you provide new inputs that the model has never seen before and it makes a prediction.
